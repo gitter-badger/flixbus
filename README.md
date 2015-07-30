@@ -1,4 +1,6 @@
 # Flixbus for nerds
+
+[![Join the chat at https://gitter.im/tobiasoberrauch/flixbus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tobiasoberrauch/flixbus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm package](https://nodei.co/npm/flixbus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/flixbus/)
 [![Gitter](https://img.shields.io/badge/gitter-join_chat-blue.svg?style=flat-square)](https://gitter.im/tobiasoberrauch/flixbus?utm_source=badge)
 
