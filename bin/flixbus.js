@@ -2,11 +2,10 @@
 /*global require, module*/
 
 const _ = require('lodash');
-const cheerio = require('cheerio');
 const inquirer = require('inquirer');
+const connectivity = require('connectivity');
 
 const app = require('../');
-const helper = require('../lib/helper.js');
 const rides = require('../lib/flixbus/rides.js');
 
 var getToday = function () {
@@ -49,8 +48,14 @@ var questions = [
   //}
 ];
 
-inquirer.prompt(questions, function (answers) {
-  app.run(answers, function (err, response, body) {
-    console.log(rides.toTable(body));
-  });
+connectivity(function(online) {
+  if (online) {
+    inquirer.prompt(questions, function (answers) {
+      app.run(answers, function (err, response, body) {
+        console.log(rides.toTable(body));
+      });
+    });
+  } else {
+    console.warn("You're offline. This is only available in premium mode");
+  }
 });
