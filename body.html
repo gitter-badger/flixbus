@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script type="text/javascript">(window.NREUM || (NREUM = {})).loader_config = {xpid: "XAEGUlZVGwICUVBbBAYH"};
+    window.NREUM || (NREUM = {}), __nr_require = function (t, e, n) {
+        function r(n) {
+            if (!e[n]) {
+                var o = e[n] = {exports: {}};
+                t[n][0].call(o.exports, function (e) {
+                    var o = t[n][1][e];
+                    return r(o ? o : e)
+                }, o, o.exports)
+            }
+            return e[n].exports
+        }
+
+        if ("function" == typeof __nr_require)return __nr_require;
+        for (var o = 0; o < n.length; o++)r(n[o]);
+        return r
+    }({
+        QJf3ax: [function (t, e) {
+            function n(t) {
+                function e(e, n, a) {
+                    t && t(e, n, a), a || (a = {});
+                    for (var c = s(e), f = c.length, u = i(a, o, r), d = 0; f > d; d++)c[d].apply(u, n);
+                    return u
+                }
+
+                function a(t, e) {
+                    f[t] = s(t).concat(e)
+                }
+
+                function s(t) {
+                    return f[t] || []
+                }
+
+                function c() {
+                    return n(e)
+                }
+
+                var f = {};
+                return {on: a, emit: e, create: c, listeners: s, _events: f}
+            }
+
+            function r() {
+                return {}
+            }
+
+            var o = "nr@context", i = t("gos");
+            e.exports = n()
+        }, {gos: "7eSDFh"}],
+        ee: [function (t, e) {
+            e.exports = t("QJf3ax")
+        }, {}],
+        3: [function (t) {
+            function e(t) {
+                try {
+                    i.console && console.log(t)
+                } catch (e) {
+                }
+            }
+
+            var n, r = t("ee"), o = t(1), i = {};
+            try {
+                n = localStorage.getItem("__nr_flags").split(","), console && "function" == typeof console.log && (i.console = !0, -1 !== n.indexOf("dev") && (i.dev = !0), -1 !== n.indexOf("nr_dev") && (i.nrDev = !0))
+            } catch (a) {
+            }
+            i.nrDev && r.on("internal-error", function (t) {
+                e(t.stack)
+            }), i.dev && r.on("fn-err", function (t, n, r) {
+                e(r.stack)
+            }), i.dev && (e("NR AGENT IN DEVELOPMENT MODE"), e("flags: " + o(i, function (t) {
+                        return t
+                    }).join(", ")))
+        }, {1: 23, ee: "QJf3ax"}],
+        4: [function (t) {
+            function e(t, e, n, i, s) {
+                try {
+                    c ? c -= 1 : r("err", [s || new UncaughtException(t, e, n)])
+                } catch (f) {
+                    try {
+                        r("ierr", [f, (new Date).getTime(), !0])
+                    } catch (u) {
+                    }
+                }
+                return "function" == typeof a ? a.apply(this, o(arguments)) : !1
+            }
+
+            function UncaughtException(t, e, n) {
+                this.message = t || "Uncaught error with no additional information", this.sourceURL = e, this.line = n
+            }
+
+            function n(t) {
+                r("err", [t, (new Date).getTime()])
+            }
+
+            var r = t("handle"), o = t(6), i = t("ee"), a = window.onerror, s = !1, c = 0;
+            t("loader").features.err = !0, t(5), window.onerror = e;
+            try {
+                throw new Error
+            } catch (f) {
+                "stack"in f && (t(1), t(2), "addEventListener"in window && t(3), window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && !/CriOS/.test(navigator.userAgent) && t(4), s = !0)
+            }
+            i.on("fn-start", function () {
+                s && (c += 1)
+            }), i.on("fn-err", function (t, e, r) {
+                s && (this.thrown = !0, n(r))
+            }), i.on("fn-end", function () {
+                s && !this.thrown && c > 0 && (c -= 1)
+            }), i.on("internal-error", function (t) {
+                r("ierr", [t, (new Date).getTime(), !0])
+            })
+        }, {1: 10, 2: 9, 3: 7, 4: 11, 5: 3, 6: 24, ee: "QJf3ax", handle: "D5DuLP", loader: "G9z0Bl"}],
+        5: [function (t) {
+            t("loader").features.ins = !0
+        }, {loader: "G9z0Bl"}],
+        6: [function (t) {
+            function e() {
+            }
+
+            if (window.performance && window.performance.timing && window.performance.getEntriesByType) {
+                var n = t("ee"), r = t("handle"), o = t(1), i = t(2);
+                t("loader").features.stn = !0, t(3), n.on("fn-start", function (t) {
+                    var e = t[0];
+                    e instanceof Event && (this.bstStart = Date.now())
+                }), n.on("fn-end", function (t, e) {
+                    var n = t[0];
+                    n instanceof Event && r("bst", [n, e, this.bstStart, Date.now()])
+                }), o.on("fn-start", function (t, e, n) {
+                    this.bstStart = Date.now(), this.bstType = n
+                }), o.on("fn-end", function (t, e) {
+                    r("bstTimer", [e, this.bstStart, Date.now(), this.bstType])
+                }), i.on("fn-start", function () {
+                    this.bstStart = Date.now()
+                }), i.on("fn-end", function (t, e) {
+                    r("bstTimer", [e, this.bstStart, Date.now(), "requestAnimationFrame"])
+                }), n.on("pushState-start", function () {
+                    this.time = Date.now(), this.startPath = location.pathname + location.hash
+                }), n.on("pushState-end", function () {
+                    r("bstHist", [location.pathname + location.hash, this.startPath, this.time])
+                }), "addEventListener"in window.performance && (window.performance.addEventListener("webkitresourcetimingbufferfull", function () {
+                    r("bstResource", [window.performance.getEntriesByType("resource")]), window.performance.webkitClearResourceTimings()
+                }, !1), window.performance.addEventListener("resourcetimingbufferfull", function () {
+                    r("bstResource", [window.performance.getEntriesByType("resource")]), window.performance.clearResourceTimings()
+                }, !1)), document.addEventListener("scroll", e, !1), document.addEventListener("keypress", e, !1), document.addEventListener("click", e, !1)
+            }
+        }, {1: 10, 2: 9, 3: 8, ee: "QJf3ax", handle: "D5DuLP", loader: "G9z0Bl"}],
+        7: [function (t, e) {
+            function n(t) {
+                i.inPlace(t, ["addEventListener", "removeEventListener"], "-", r)
+            }
+
+            function r(t) {
+                return t[1]
+            }
+
+            var o = (t(1), t("ee").create()), i = t(2)(o), a = t("gos");
+            if (e.exports = o, n(window), "getPrototypeOf"in Object) {
+                for (var s = document; s && !s.hasOwnProperty("addEventListener");)s = Object.getPrototypeOf(s);
+                s && n(s);
+                for (var c = XMLHttpRequest.prototype; c && !c.hasOwnProperty("addEventListener");)c = Object.getPrototypeOf(c);
+                c && n(c)
+            } else XMLHttpRequest.prototype.hasOwnProperty("addEventListener") && n(XMLHttpRequest.prototype);
+            o.on("addEventListener-start", function (t) {
+                if (t[1]) {
+                    var e = t[1];
+                    "function" == typeof e ? this.wrapped = t[1] = a(e, "nr@wrapped", function () {
+                        return i(e, "fn-", null, e.name || "anonymous")
+                    }) : "function" == typeof e.handleEvent && i.inPlace(e, ["handleEvent"], "fn-")
+                }
+            }), o.on("removeEventListener-start", function (t) {
+                var e = this.wrapped;
+                e && (t[1] = e)
+            })
+        }, {1: 24, 2: 25, ee: "QJf3ax", gos: "7eSDFh"}],
+        8: [function (t, e) {
+            var n = (t(2), t("ee").create()), r = t(1)(n);
+            e.exports = n, r.inPlace(window.history, ["pushState"], "-")
+        }, {1: 25, 2: 24, ee: "QJf3ax"}],
+        9: [function (t, e) {
+            var n = (t(2), t("ee").create()), r = t(1)(n);
+            e.exports = n, r.inPlace(window, ["requestAnimationFrame", "mozRequestAnimationFrame", "webkitRequestAnimationFrame", "msRequestAnimationFrame"], "raf-"), n.on("raf-start", function (t) {
+                t[0] = r(t[0], "fn-")
+            })
+        }, {1: 25, 2: 24, ee: "QJf3ax"}],
+        10: [function (t, e) {
+            function n(t, e, n) {
+                t[0] = o(t[0], "fn-", null, n)
+            }
+
+            var r = (t(2), t("ee").create()), o = t(1)(r);
+            e.exports = r, o.inPlace(window, ["setTimeout", "setInterval", "setImmediate"], "setTimer-"), r.on("setTimer-start", n)
+        }, {1: 25, 2: 24, ee: "QJf3ax"}],
+        11: [function (t, e) {
+            function n() {
+                f.inPlace(this, p, "fn-")
+            }
+
+            function r(t, e) {
+                f.inPlace(e, ["onreadystatechange"], "fn-")
+            }
+
+            function o(t, e) {
+                return e
+            }
+
+            function i(t, e) {
+                for (var n in t)e[n] = t[n];
+                return e
+            }
+
+            var a = t("ee").create(), s = t(1), c = t(2), f = c(a), u = c(s), d = window.XMLHttpRequest, p = ["onload", "onerror", "onabort", "onloadstart", "onloadend", "onprogress", "ontimeout"];
+            e.exports = a, window.XMLHttpRequest = function (t) {
+                var e = new d(t);
+                try {
+                    a.emit("new-xhr", [], e), u.inPlace(e, ["addEventListener", "removeEventListener"], "-", o), e.addEventListener("readystatechange", n, !1)
+                } catch (r) {
+                    try {
+                        a.emit("internal-error", [r])
+                    } catch (i) {
+                    }
+                }
+                return e
+            }, i(d, XMLHttpRequest), XMLHttpRequest.prototype = d.prototype, f.inPlace(XMLHttpRequest.prototype, ["open", "send"], "-xhr-", o), a.on("send-xhr-start", r), a.on("open-xhr-start", r)
+        }, {1: 7, 2: 25, ee: "QJf3ax"}],
+        12: [function (t) {
+            function e(t) {
+                var e = this.params, r = this.metrics;
+                if (!this.ended) {
+                    this.ended = !0;
+                    for (var i = 0; c > i; i++)t.removeEventListener(s[i], this.listener, !1);
+                    if (!e.aborted) {
+                        if (r.duration = (new Date).getTime() - this.startTime, 4 === t.readyState) {
+                            e.status = t.status;
+                            var a = t.responseType, f = "arraybuffer" === a || "blob" === a || "json" === a ? t.response : t.responseText, u = n(f);
+                            if (u && (r.rxSize = u), this.sameOrigin) {
+                                var d = t.getResponseHeader("X-NewRelic-App-Data");
+                                d && (e.cat = d.split(", ").pop())
+                            }
+                        } else e.status = 0;
+                        r.cbTime = this.cbTime, o("xhr", [e, r, this.startTime])
+                    }
+                }
+            }
+
+            function n(t) {
+                if ("string" == typeof t && t.length)return t.length;
+                if ("object" != typeof t)return void 0;
+                if ("undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer && t.byteLength)return t.byteLength;
+                if ("undefined" != typeof Blob && t instanceof Blob && t.size)return t.size;
+                if ("undefined" != typeof FormData && t instanceof FormData)return void 0;
+                try {
+                    return JSON.stringify(t).length
+                } catch (e) {
+                    return void 0
+                }
+            }
+
+            function r(t, e) {
+                var n = i(e), r = t.params;
+                r.host = n.hostname + ":" + n.port, r.pathname = n.pathname, t.sameOrigin = n.sameOrigin
+            }
+
+            if (window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && !/CriOS/.test(navigator.userAgent)) {
+                t("loader").features.xhr = !0;
+                var o = t("handle"), i = t(2), a = t("ee"), s = ["load", "error", "abort", "timeout"], c = s.length, f = t(1);
+                t(4), t(3), a.on("new-xhr", function () {
+                    this.totalCbs = 0, this.called = 0, this.cbTime = 0, this.end = e, this.ended = !1, this.xhrGuids = {}
+                }), a.on("open-xhr-start", function (t) {
+                    this.params = {method: t[0]}, r(this, t[1]), this.metrics = {}
+                }), a.on("open-xhr-end", function (t, e) {
+                    "loader_config"in NREUM && "xpid"in NREUM.loader_config && this.sameOrigin && e.setRequestHeader("X-NewRelic-ID", NREUM.loader_config.xpid)
+                }), a.on("send-xhr-start", function (t, e) {
+                    var r = this.metrics, o = t[0], i = this;
+                    if (r && o) {
+                        var f = n(o);
+                        f && (r.txSize = f)
+                    }
+                    this.startTime = (new Date).getTime(), this.listener = function (t) {
+                        try {
+                            "abort" === t.type && (i.params.aborted = !0), ("load" !== t.type || i.called === i.totalCbs && (i.onloadCalled || "function" != typeof e.onload)) && i.end(e)
+                        } catch (n) {
+                            try {
+                                a.emit("internal-error", [n])
+                            } catch (r) {
+                            }
+                        }
+                    };
+                    for (var u = 0; c > u; u++)e.addEventListener(s[u], this.listener, !1)
+                }), a.on("xhr-cb-time", function (t, e, n) {
+                    this.cbTime += t, e ? this.onloadCalled = !0 : this.called += 1, this.called !== this.totalCbs || !this.onloadCalled && "function" == typeof n.onload || this.end(n)
+                }), a.on("xhr-load-added", function (t, e) {
+                    var n = "" + f(t) + !!e;
+                    this.xhrGuids && !this.xhrGuids[n] && (this.xhrGuids[n] = !0, this.totalCbs += 1)
+                }), a.on("xhr-load-removed", function (t, e) {
+                    var n = "" + f(t) + !!e;
+                    this.xhrGuids && this.xhrGuids[n] && (delete this.xhrGuids[n], this.totalCbs -= 1)
+                }), a.on("addEventListener-end", function (t, e) {
+                    e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-added", [t[1], t[2]], e)
+                }), a.on("removeEventListener-end", function (t, e) {
+                    e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-removed", [t[1], t[2]], e)
+                }), a.on("fn-start", function (t, e, n) {
+                    e instanceof XMLHttpRequest && ("onload" === n && (this.onload = !0), ("load" === (t[0] && t[0].type) || this.onload) && (this.xhrCbStart = (new Date).getTime()))
+                }), a.on("fn-end", function (t, e) {
+                    this.xhrCbStart && a.emit("xhr-cb-time", [(new Date).getTime() - this.xhrCbStart, this.onload, e], e)
+                })
+            }
+        }, {1: "XL7HBI", 2: 13, 3: 11, 4: 7, ee: "QJf3ax", handle: "D5DuLP", loader: "G9z0Bl"}],
+        13: [function (t, e) {
+            e.exports = function (t) {
+                var e = document.createElement("a"), n = window.location, r = {};
+                e.href = t, r.port = e.port;
+                var o = e.href.split("://");
+                return !r.port && o[1] && (r.port = o[1].split("/")[0].split("@").pop().split(":")[1]), r.port && "0" !== r.port || (r.port = "https" === o[0] ? "443" : "80"), r.hostname = e.hostname || n.hostname, r.pathname = e.pathname, r.protocol = o[0], "/" !== r.pathname.charAt(0) && (r.pathname = "/" + r.pathname), r.sameOrigin = !e.hostname || e.hostname === document.domain && e.port === n.port && e.protocol === n.protocol, r
+            }
+        }, {}],
+        14: [function (t, e) {
+            function n(t) {
+                return function () {
+                    r(t, [(new Date).getTime()].concat(i(arguments)))
+                }
+            }
+
+            var r = t("handle"), o = t(1), i = t(2);
+            "undefined" == typeof window.newrelic && (newrelic = window.NREUM);
+            var a = ["setPageViewName", "addPageAction", "setCustomAttribute", "finished", "addToTrace", "inlineHit", "noticeError"];
+            o(a, function (t, e) {
+                window.NREUM[e] = n("api-" + e)
+            }), e.exports = window.NREUM
+        }, {1: 23, 2: 24, handle: "D5DuLP"}],
+        "7eSDFh": [function (t, e) {
+            function n(t, e, n) {
+                if (r.call(t, e))return t[e];
+                var o = n();
+                if (Object.defineProperty && Object.keys)try {
+                    return Object.defineProperty(t, e, {value: o, writable: !0, enumerable: !1}), o
+                } catch (i) {
+                }
+                return t[e] = o, o
+            }
+
+            var r = Object.prototype.hasOwnProperty;
+            e.exports = n
+        }, {}],
+        gos: [function (t, e) {
+            e.exports = t("7eSDFh")
+        }, {}],
+        handle: [function (t, e) {
+            e.exports = t("D5DuLP")
+        }, {}],
+        D5DuLP: [function (t, e) {
+            function n(t, e, n) {
+                return r.listeners(t).length ? r.emit(t, e, n) : (o[t] || (o[t] = []), void o[t].push(e))
+            }
+
+            var r = t("ee").create(), o = {};
+            e.exports = n, n.ee = r, r.q = o
+        }, {ee: "QJf3ax"}],
+        id: [function (t, e) {
+            e.exports = t("XL7HBI")
+        }, {}],
+        XL7HBI: [function (t, e) {
+            function n(t) {
+                var e = typeof t;
+                return !t || "object" !== e && "function" !== e ? -1 : t === window ? 0 : i(t, o, function () {
+                    return r++
+                })
+            }
+
+            var r = 1, o = "nr@id", i = t("gos");
+            e.exports = n
+        }, {gos: "7eSDFh"}],
+        G9z0Bl: [function (t, e) {
+            function n() {
+                var t = p.info = NREUM.info, e = f.getElementsByTagName("script")[0];
+                if (t && t.licenseKey && t.applicationID && e) {
+                    s(d, function (e, n) {
+                        e in t || (t[e] = n)
+                    });
+                    var n = "https" === u.split(":")[0] || t.sslForHttp;
+                    p.proto = n ? "https://" : "http://", a("mark", ["onload", i()]);
+                    var r = f.createElement("script");
+                    r.src = p.proto + t.agent, e.parentNode.insertBefore(r, e)
+                }
+            }
+
+            function r() {
+                "complete" === f.readyState && o()
+            }
+
+            function o() {
+                a("mark", ["domContent", i()])
+            }
+
+            function i() {
+                return (new Date).getTime()
+            }
+
+            var a = t("handle"), s = t(1), c = (t(2), window), f = c.document, u = ("" + location).split("?")[0], d = {
+                beacon: "bam.nr-data.net",
+                errorBeacon: "bam.nr-data.net",
+                agent: "js-agent.newrelic.com/nr-632.min.js"
+            }, p = e.exports = {offset: i(), origin: u, features: {}};
+            f.addEventListener ? (f.addEventListener("DOMContentLoaded", o, !1), c.addEventListener("load", n, !1)) : (f.attachEvent("onreadystatechange", r), c.attachEvent("onload", n)), a("mark", ["firstbyte", i()])
+        }, {1: 23, 2: 14, handle: "D5DuLP"}],
+        loader: [function (t, e) {
+            e.exports = t("G9z0Bl")
+        }, {}],
+        23: [function (t, e) {
+            function n(t, e) {
+                var n = [], o = "", i = 0;
+                for (o in t)r.call(t, o) && (n[i] = e(o, t[o]), i += 1);
+                return n
+            }
+
+            var r = Object.prototype.hasOwnProperty;
+            e.exports = n
+        }, {}],
+        24: [function (t, e) {
+            function n(t, e, n) {
+                e || (e = 0), "undefined" == typeof n && (n = t ? t.length : 0);
+                for (var r = -1, o = n - e || 0, i = Array(0 > o ? 0 : o); ++r < o;)i[r] = t[e + r];
+                return i
+            }
+
+            e.exports = n
+        }, {}],
+        25: [function (t, e) {
+            function n(t) {
+                return !(t && "function" == typeof t && t.apply && !t[i])
+            }
+
+            var r = t("ee"), o = t(1), i = "nr@wrapper", a = Object.prototype.hasOwnProperty;
+            e.exports = function (t) {
+                function e(t, e, r, a) {
+                    function nrWrapper() {
+                        var n, i, s, f;
+                        try {
+                            i = this, n = o(arguments), s = r && r(n, i) || {}
+                        } catch (d) {
+                            u([d, "", [n, i, a], s])
+                        }
+                        c(e + "start", [n, i, a], s);
+                        try {
+                            return f = t.apply(i, n)
+                        } catch (p) {
+                            throw c(e + "err", [n, i, p], s), p
+                        } finally {
+                            c(e + "end", [n, i, f], s)
+                        }
+                    }
+
+                    return n(t) ? t : (e || (e = ""), nrWrapper[i] = !0, f(t, nrWrapper), nrWrapper)
+                }
+
+                function s(t, r, o, i) {
+                    o || (o = "");
+                    var a, s, c, f = "-" === o.charAt(0);
+                    for (c = 0; c < r.length; c++)s = r[c], a = t[s], n(a) || (t[s] = e(a, f ? s + o : o, i, s))
+                }
+
+                function c(e, n, r) {
+                    try {
+                        t.emit(e, n, r)
+                    } catch (o) {
+                        u([o, e, n, r])
+                    }
+                }
+
+                function f(t, e) {
+                    if (Object.defineProperty && Object.keys)try {
+                        var n = Object.keys(t);
+                        return n.forEach(function (n) {
+                            Object.defineProperty(e, n, {
+                                get: function () {
+                                    return t[n]
+                                }, set: function (e) {
+                                    return t[n] = e, e
+                                }
+                            })
+                        }), e
+                    } catch (r) {
+                        u([r])
+                    }
+                    for (var o in t)a.call(t, o) && (e[o] = t[o]);
+                    return e
+                }
+
+                function u(e) {
+                    try {
+                        t.emit("internal-error", e)
+                    } catch (n) {
+                    }
+                }
+
+                return t || (t = r), e.inPlace = s, e.flag = i, e
+            }
+        }, {1: 24, ee: "QJf3ax"}]
+    }, {}, ["G9z0Bl", 4, 12, 6, 5]);</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Mit dem Bus von Tübingen bis Karlsruhe am 30.07.2015</title>
+    <meta name="robots" content="noindex"/>
+    <link rel="shortcut icon" href="/img/flixbus/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="apple-touch-icon" href="/apple-touch-icon-iphone-flixbus.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-ipad-flixbus.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-iphone-retina-flixbus.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-ipad-retina-flixbus.png">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic'
+          rel='stylesheet' type='text/css'>
+    <link href="/css/fb-bootstrap.css?d576f59e99764cc43ea4435a0de1b2dfe6e54973" type="text/css" rel="stylesheet"
+          media="screen"/>
+    <link href="/css/style.css?d576f59e99764cc43ea4435a0de1b2dfe6e54973" type="text/css" rel="stylesheet"
+          media="screen"/>
+    <link href="/css/flixbus.css?d576f59e99764cc43ea4435a0de1b2dfe6e54973" type="text/css" rel="stylesheet"
+          media="screen"/>
+    <link rel="stylesheet" href="/css/d27882b.css?d576f59e99764cc43ea4435a0de1b2dfe6e54973">
+    <!-- optimizely -->
+    <script src="//cdn.optimizely.com/js/1916610717.js"></script>
+    <script>
+        var _bb = _bb || [];
+        _bb.push(["cookie domain", window.location.hostname.replace(/^(shop|www)/, "")]);
+    </script>
+    <script src="//core.bunchbox.co/550ff6f48a49920377e0074c.min.js"></script>
+    <!-- HTML5 element support for IE6-8 -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]--><!--[if lte IE 8]>
+    <script type="text/javascript" src="/vendor/js/ie.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script><![endif]-->
+    <script>
+        var _rollbarConfig = {
+            accessToken: "533d92e579264e009013f13c96e2423b",
+            captureUncaught: true,
+            payload: {
+                environment: "production-hamburg"
+            }
+        };
+        !function (r) {
+            function t(o) {
+                if (e[o])return e[o].exports;
+                var n = e[o] = {exports: {}, id: o, loaded: !1};
+                return r[o].call(n.exports, n, n.exports, t), n.loaded = !0, n.exports
+            }
+
+            var e = {};
+            return t.m = r, t.c = e, t.p = "", t(0)
+        }([function (r, t, e) {
+            "use strict";
+            var o = e(1).Rollbar, n = e(2), a = "https://d37gvrvc0wt4s1.cloudfront.net/js/v1.4/rollbar.min.js";
+            _rollbarConfig.rollbarJsUrl = _rollbarConfig.rollbarJsUrl || a;
+            var i = o.init(window, _rollbarConfig), l = n(i, _rollbarConfig);
+            i.loadFull(window, document, !1, _rollbarConfig, l)
+        }, function (r, t) {
+            "use strict";
+            function e() {
+                var r = window.console;
+                r && "function" == typeof r.log && r.log.apply(r, arguments)
+            }
+
+            function o(r) {
+                this.shimId = ++u, this.notifier = null, this.parentShim = r, this.logger = e, this._rollbarOldOnError = null
+            }
+
+            function n(r, t, e) {
+                window._rollbarWrappedError && (e[4] || (e[4] = window._rollbarWrappedError), e[5] || (e[5] = window._rollbarWrappedError._rollbarContext), window._rollbarWrappedError = null), r.uncaughtError.apply(r, e), t && t.apply(window, e)
+            }
+
+            function a(r) {
+                var t = o;
+                return l(function () {
+                    if (this.notifier)return this.notifier[r].apply(this.notifier, arguments);
+                    var e = this, o = "scope" === r;
+                    o && (e = new t(this));
+                    var n = Array.prototype.slice.call(arguments, 0), a = {shim: e, method: r, args: n, ts: new Date};
+                    return window._rollbarShimQueue.push(a), o ? e : void 0
+                })
+            }
+
+            function i(r, t) {
+                if (t.hasOwnProperty && t.hasOwnProperty("addEventListener")) {
+                    var e = t.addEventListener;
+                    t.addEventListener = function (t, o, n) {
+                        e.call(this, t, r.wrap(o), n)
+                    };
+                    var o = t.removeEventListener;
+                    t.removeEventListener = function (r, t, e) {
+                        o.call(this, r, t && t._wrapped ? t._wrapped : t, e)
+                    }
+                }
+            }
+
+            function l(r, t) {
+                return t = t || e, function () {
+                    try {
+                        return r.apply(this, arguments)
+                    } catch (e) {
+                        t("Rollbar internal error:", e)
+                    }
+                }
+            }
+
+            var u = 0;
+            o.init = function (r, t) {
+                var e = t.globalAlias || "Rollbar";
+                if ("object" == typeof r[e])return r[e];
+                r._rollbarShimQueue = [], r._rollbarWrappedError = null, t = t || {};
+                var a = new o;
+                return l(function () {
+                    if (a.configure(t), t.captureUncaught) {
+                        a._rollbarOldOnError = r.onerror, r.onerror = function () {
+                            var r = Array.prototype.slice.call(arguments, 0);
+                            n(a, a._rollbarOldOnError, r)
+                        };
+                        var o, l, u = "EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");
+                        for (o = 0; o < u.length; ++o)l = u[o], r[l] && r[l].prototype && i(a, r[l].prototype)
+                    }
+                    return r[e] = a, a
+                }, a.logger)()
+            }, o.prototype.loadFull = function (r, t, e, o, n) {
+                var a = l(function () {
+                    var r = t.createElement("script"), n = t.getElementsByTagName("script")[0];
+                    r.src = o.rollbarJsUrl, r.async = !e, r.onload = i, n.parentNode.insertBefore(r, n)
+                }, this.logger), i = l(function () {
+                    var t;
+                    if (void 0 === r._rollbarPayloadQueue) {
+                        var e, o, a, i;
+                        for (t = new Error("rollbar.js did not load"); e = r._rollbarShimQueue.shift();)for (a = e.args, i = 0; i < a.length; ++i)if (o = a[i], "function" == typeof o) {
+                            o(t);
+                            break
+                        }
+                    }
+                    "function" == typeof n && n(t)
+                }, this.logger);
+                l(function () {
+                    e ? a() : r.addEventListener ? r.addEventListener("load", a, !1) : r.attachEvent("onload", a)
+                }, this.logger)()
+            }, o.prototype.wrap = function (r, t) {
+                try {
+                    var e;
+                    if (e = "function" == typeof t ? t : function () {
+                                return t || {}
+                            }, "function" != typeof r)return r;
+                    if (r._isWrap)return r;
+                    if (!r._wrapped) {
+                        r._wrapped = function () {
+                            try {
+                                return r.apply(this, arguments)
+                            } catch (t) {
+                                throw t._rollbarContext = e() || {}, t._rollbarContext._wrappedSource = r.toString(), window._rollbarWrappedError = t, t
+                            }
+                        }, r._wrapped._isWrap = !0;
+                        for (var o in r)r.hasOwnProperty(o) && (r._wrapped[o] = r[o])
+                    }
+                    return r._wrapped
+                } catch (n) {
+                    return r
+                }
+            };
+            for (var s = "log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","), p = 0; p < s.length; ++p)o.prototype[s[p]] = a(s[p]);
+            r.exports = {Rollbar: o, _rollbarWindowOnError: n}
+        }, function (r, t) {
+            "use strict";
+            r.exports = function (r, t) {
+                return function (e) {
+                    if (!e && !window._rollbarInitialized) {
+                        var o = window.RollbarNotifier, n = t || {}, a = n.globalAlias || "Rollbar", i = window.Rollbar.init(n, r);
+                        i._processShimQueue(window._rollbarShimQueue || []), window[a] = i, window._rollbarInitialized = !0, o.processPayloads()
+                    }
+                }
+            }
+        }]);
+    </script>
+    <script type="text/javascript" src="/js/035e1bf.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+    <script src="/bundles/bazingajstranslation/js/translator.min.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+    <script src="/translations?locales=de"></script>
+    <script src="/translations/validators?locales=de"></script>
+    <script type="text/javascript" src="/js/d5e6d64.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+    <script type="text/javascript">
+        var renderCaptchaOnLoad = function () {
+            var show_search_captcha = "";
+
+            if (show_search_captcha) {
+                var searchCaptchaWidget = new CaptchaWidget("6Lde6gMTAAAAAD8kv8tmvvctuRhk0bxzKbE2soMZ", "https://shop.flixbus.de/check-search-captcha");
+                searchCaptchaWidget.renderCaptcha();
+
+                var searchWidget = new SearchResultWidget();
+                searchCaptchaWidget.showSearchCaptcha(searchWidget.reloadSearch);
+            }
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=renderCaptchaOnLoad&render=explicit"></script>
+    <!--[if lte IE 7]>
+    <script type="text/javascript" src="/vendor/js/ieblock.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+    <![endif]-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+
+    </script>
+</head>
+<body><!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-QFH9M" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>var dataLayer = dataLayer || [];
+(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-QFH9M');</script>
+<!-- End Google Tag Manager -->
+<div class="main-wrapper"><!-- // HEADER  -->
+    <div class="bg_header affix-top"></div>
+    <header class="container affix-top">
+        <div class="row header">
+            <nav role="navigation" class="navbar-default">
+                <div class="navbar-header">
+                    <button data-target="#navbar-collapse-1" data-toggle="collapse" class="navbar-toggle collapsed"
+                            type="button"><span class="sr-only">Toggle navigation</span><span
+                            class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="frontLogo logo navbar-btn pull-left"
+                       href="https://www.flixbus.de/" title="Home"><img src="/img/flixbus/flixbus-logo.png" width="241"
+                                                                        alt="Fernbus fahren mit FlixBus"></a></div>
+                <div id="navbar-collapse-1" class="navbar-collapse borderNone collapse" style="height: 0;">
+                    <div class="panel-pane pane-block pane-menu-global-menu">
+                        <div class="pane-content">
+                            <ul class="menu nav topNav topNavFirst navbar-nav">
+                                <li class="first leaf"><span
+                                        title="Die ersten 30 Sek. kostenfrei, danach 0,14 € pro Minute für Anrufe aus dem deutschen Festnetz. Mobilfunkhöchstpreis: 0,42 € pro Minute. Alle Angaben inkl. MwSt.. Preise aus dem Ausland abweichend"
+                                        class="servicenumber nolink">+49 (0)1807 123 99 123</span></li>
+                                <li class="last">
+                                    <ul class="nav navbar-nav">
+                                        <li class=" first"><a href="https://www.flixbus.de/service/faq">FAQ</a></li>
+                                        <li class=""><a href="https://www.flixbus.de/aktuelle-streckeninfos">Streckeninfos</a>
+                                        </li>
+                                        <li><a href="/booking/login">Agentur Login</a></li>
+                                        <li class=""><a href="https://www.flixbus.de/unternehmen/presse">Presse</a></li>
+                                        <li class=""><a href="https://www.flixbus.de/warum-gruen">Warum alles grün?</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-separator"></div>
+                    <div class="panel-pane pane-menu-tree pane-main-menu">
+                        <div class="pane-content">
+                            <ul class="nav navbar-nav">
+                                <li class=" first"><a href="https://shop.flixbus.de">Buchen</a></li>
+                                <li class="dropdown"><a href="https://www.flixbus.de/busverbindung">Busverbindungen</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://www.flixbus.de/aktuelle-streckeninfos">Aktuelle
+                                            Streckeninfos</a></li>
+                                        <li><a href="https://www.flixbus.de/busfahrplan-bushaltestelle">Fahrpläne &
+                                            Haltestellen</a></li>
+                                        <li><a href="https://www.flixbus.de/fernbus">Fernbus in Deine Stadt</a></li>
+                                        <li><a href="https://www.flixbus.de/nachtbus">Nachtbusse</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="https://www.flixbus.de/service">Service</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://www.flixbus.de/service/faq">FAQ</a></li>
+                                        <li><a href="https://www.flixbus.de/service/services-im-bus">Im Bus</a></li>
+                                        <li><a href="https://www.flixbus.de/service/stornieren-und-umbuchen">Stornieren
+                                            & Umbuchen</a></li>
+                                        <li><a href="https://www.flixbus.de/service/fernbus-app">Fernbus App</a></li>
+                                        <li><a href="https://www.flixbus.de/service/gepaeck">Gepäck</a></li>
+                                        <li><a href="https://www.flixbus.de/service/buchen-im-reisebuero">Reisebüro</a>
+                                        </li>
+                                        <li><a href="https://www.flixbus.de/service/fundbuero">Fundbüro</a></li>
+                                        <li><a href="https://www.flixbus.de/service/specials-und-angebote">Angebote</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown last"><a href="https://www.flixbus.de/unternehmen">Unternehmen</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="https://www.flixbus.de/unternehmen/ueber-flixbus">Über uns</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/sicherheit">Sicherheit</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/umwelt">Umwelt</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/kundenzufriedenheit">Kundenzufriedenheit</a>
+                                        </li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/preise">Preise</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/partner">Partner</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/jobs">Karriere</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/presse">Presse</a></li>
+                                        <li><a href="https://www.flixbus.de/unternehmen/kontakt">Kontakt</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="country-select">
+            <form action=""><select id="country-options" name="country-options">
+                <option title="https://shop.flixbus.com/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=en&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="uk"
+                        >
+                    English
+                </option>
+                <option title="https://shop.flixbus.de/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=de&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="de"
+                        selected>
+                    Deutsch
+                </option>
+                <option title="https://shop.flixbus.at/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=de&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="at"
+                        >
+                    Deutsch
+                </option>
+                <option title="https://shop.flixbus.it/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=it&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="it"
+                        >
+                    Italiano
+                </option>
+                <option title="https://shop.flixbus.nl/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=nl&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="nl"
+                        >
+                    Nederlands
+                </option>
+                <option title="https://shop.flixbus.fr/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=fr&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="fr"
+                        >
+                    Français
+                </option>
+                <option title="https://shop.flixbus.cz/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=cs&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="cz"
+                        >
+                    Čeština
+                </option>
+                <option title="https://shop.flixbus.be/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=nl_BE&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="be"
+                        >
+                    Nederlands
+                </option>
+                <option title="https://shop.flixbus.be/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=fr_BE&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="be"
+                        >
+                    Français
+                </option>
+                <option title="https://shop.flixbus.dk/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=da&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="dk"
+                        >
+                    Dansk
+                </option>
+                <option title="https://shop.flixbus.se/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;oneWay=&amp;backRideDate=30.07.2015&amp;_locale=sv&amp;form_build_id=form-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo&amp;form_id=fb_search_form_main&amp;_ga=1.212170269.861310141.1432776698&amp;_sessid=emqsrnvehleeen46b94u436q63"
+                        value="se"
+                        >
+                    Svenska
+                </option>
+            </select><input value="Select" type="submit"/></form>
+        </div>
+    </header>
+    <!-- // END HEADER  -->
+    <section class="page">
+        <div class="container-fluid">
+            <div class="row flix">
+                <div class="content col-xs-12 col-md-8">
+                    <div class="main-search row ">
+                        <form name="search_form" method="get" action="/search" class="search-form"><input type="hidden"
+                                                                                                          id="route"
+                                                                                                          name="route"/>
+
+                            <div class="col-xs-12 form-wrap b">
+                                <div class="form-wrap-hdr clearfix"><span class="currency-switch">
+            Zahlen mit:
+                            <span class="active de">EUR</span><span>|</span><a
+                                        href="https://shop.flixbus.de/switch/currency/chf?redirect=/search" class="ch"
+                                        data-currency="CHF">CHF</a></span></div>
+                                <div class="fields-wrapper clearfix">
+                                    <div class="row clearfix stations-box">
+                                        <div class="r-coll"><label>von</label><input type="text" id="DeparturePoint"
+                                                                                     class="combobox"
+                                                                                     autocomplete="off"/></div>
+                                        <button type="button" id="destinations-switcher"><span
+                                                class="glyphicon glyphicon-sort"></span></button>
+                                        <div class="r-coll"><label>nach</label><input type="text" id="ArrivalPoint"
+                                                                                      class="combobox"
+                                                                                      autocomplete="off"/></div>
+                                    </div>
+                                    <div class="row clearfix dates-box">
+                                        <div class="r-coll"><label>hin</label><input type="text" id="rideDate"
+                                                                                     name="rideDate" required="required"
+                                                                                     maxlength="10" value="30.07.2015"/>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="r-coll"><label><input type="checkbox" id="backRide" name="backRide"
+                                                                          value="1"/>zurück</label><input type="text"
+                                                                                                          id="backRideDate"
+                                                                                                          name="backRideDate"
+                                                                                                          required="required"
+                                                                                                          maxlength="10"
+                                                                                                          value="30.07.2015"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-row clearfix">
+                                    <div class="fields-wrapper clearfix quantity-wrapper">
+                                        <div class="quantity"><span
+                                                class="quantity-title"><span>Erwachsene</span></span>
+
+                                            <div class="quantity-inner"><input type="button" class="button-minus"
+                                                                               title="weniger"><input type="text"
+                                                                                                      id="adults"
+                                                                                                      name="adults"
+                                                                                                      required="required"
+                                                                                                      max="40"
+                                                                                                      autocomplete="off"
+                                                                                                      pattern="[0-9]{1,2}"
+                                                                                                      class="quantity-input"
+                                                                                                      value="1"/><input
+                                                    type="button" class="button-plus" title="mehr"></div>
+                                        </div>
+                                        <div class="quantity"><span class="quantity-title"><span>Kinder</span></span>
+
+                                            <div class="quantity-inner"><input type="button" class="button-minus"
+                                                                               title="weniger"><input type="text"
+                                                                                                      id="children"
+                                                                                                      name="children"
+                                                                                                      required="required"
+                                                                                                      max="40"
+                                                                                                      autocomplete="off"
+                                                                                                      pattern="[0-9]{0,2}"
+                                                                                                      class="quantity-input"
+                                                                                                      value="0"/><input
+                                                    type="button" class="button-plus" title="mehr"></div>
+                                        </div>
+                                        <div class="quantity"><span class="quantity-title"><span>Fahrräder</span></span>
+
+                                            <div class="quantity-inner"><input type="button" class="button-minus"
+                                                                               title="weniger"><input type="text"
+                                                                                                      id="bikes"
+                                                                                                      name="bikes"
+                                                                                                      required="required"
+                                                                                                      max="5"
+                                                                                                      autocomplete="off"
+                                                                                                      pattern="[0-9]{0,1}"
+                                                                                                      class="quantity-input"
+                                                                                                      value="0"/><input
+                                                    type="button" class="button-plus" title="mehr"></div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Verbindung suchen" class="green-btn"></div>
+                                <div class="btm-banner"></div>
+                            </div>
+                            <input type="hidden" id="departureCity" name="departureCity" autocomplete="off"
+                                   value="159"/><input type="hidden" id="departureStation"
+                                                       name="departureStation"/><input type="hidden" id="arrivalCity"
+                                                                                       name="arrivalCity"
+                                                                                       autocomplete="off"
+                                                                                       value="109"/><input type="hidden"
+                                                                                                           id="arrivalStation"
+                                                                                                           name="arrivalStation"/><input
+                                    type="hidden" id="currency" name="currency" value="EUR"/></form>
+                        <script>
+                            jQuery(function ($) {
+                                var locationData = new LocationData();
+
+                                SearchInit(
+                                        locationData,
+                                        {
+                                            lockedDestination: false,
+                                            enablePreselect: false
+                                        },
+                                        {
+                                            departurePoint: $('#DeparturePoint'),
+                                            arrivalPoint: $('#ArrivalPoint'),
+                                            rideDate: $('#rideDate'),
+                                            backRideDate: $('#backRideDate'),
+                                            departureCity: $('#departureCity'),
+                                            departureStation: $('#departureStation'),
+                                            arrivalCity: $('#arrivalCity'),
+                                            arrivalStation: $('#arrivalStation'),
+                                            route: $('#route'),
+                                            destinationsSwitcher: $('#destinations-switcher')
+                                        },
+                                        {
+                                            departurePoint: '#DeparturePoint',
+                                            arrivalPoint: '#ArrivalPoint',
+                                            departureCity: '#departureCity',
+                                            departureStation: '#departureStation',
+                                            arrivalCity: '#arrivalCity',
+                                            arrivalStation: '#arrivalStation',
+                                            datepickers: '#rideDate,#backRideDate',
+                                            backRide: '#backRide',
+                                            passengerQuantifiers: '#adults,#children',
+                                            bikeQuantifier: '#bikes'
+                                        }
+                                );
+                            });
+                        </script>
+                    </div>
+                    <div id="bookingCaptchaPopup" class="popup-window small b text"><img class="popup-image"
+                                                                                         src="/img/waiting-bus.png"
+                                                                                         alt="">
+
+                        <h3>Sicherheitsüberprüfung</h3>
+
+                        <div id="bookingReCaptcha"></div>
+                    </div>
+                    <div class="row">
+                        <div class="search-result col-xs-12 "
+                             id="search-result-direct"><!-- Station names/picker -->
+                            <div class="row">
+                                <div class="station-names col-xs-12 col-no-gap">
+                                    <div id="pills-wrapper-direct" class="pills-wrapper ">
+                                        <div class="station-wrapper">
+                                            <div id="pills-from" data-group="direct"><h2 class="station-from">Tübingen
+                                                Hbf</h2><input type="hidden" value="79" data-stationid="79"></div>
+                                        </div>
+                                        <div class="station-arrow">
+                                            &rarr;
+                                        </div>
+                                        <div class="station-wrapper">
+                                            <div id="pills-to" data-group="direct"><h2 class="station-to">Karlsruhe
+                                                Hbf</h2><input type="hidden" value="26" data-stationid="26"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="station-block-79-26"
+                                     class="pill-block col-xs-12" data-key="79:26"
+                                     data-group="direct">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-no-gap visible-xs visible-md">
+                                            <ul class="dates">
+                                                <li><a class="active"
+                                                       href="/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;backRideDate=30.07.2015&amp;currency=EUR">
+                                                    Donnerstag,
+                                                    <strong>
+                                                        30. Jul
+                                                    </strong></a></li>
+                                                &nbsp;
+                                                <li><a class="next"
+                                                       href="/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=31.07.2015&amp;backRideDate=30.07.2015&amp;currency=EUR">
+                                                    &rarr;
+                                                </a></li>
+                                                &nbsp;
+                                            </ul>
+                                        </div>
+                                        <div class="col-xs-12 col-no-gap visible-sm visible-lg">
+                                            <ul class="dates">
+                                                <li><a class="active"
+                                                       href="/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=30.07.2015&amp;backRideDate=30.07.2015&amp;currency=EUR">
+                                                    Donnerstag,
+                                                    <strong>
+                                                        30. Jul
+                                                    </strong></a></li>
+                                                &nbsp;
+                                                <li><a class="tomorrow"
+                                                       href="/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=31.07.2015&amp;backRideDate=30.07.2015&amp;currency=EUR">
+                                                    Freitag,
+                                                    <strong>
+                                                        31. Jul
+                                                    </strong></a></li>
+                                                &nbsp;
+                                                <li><a class="next"
+                                                       href="/search?adults=1&amp;children=0&amp;bikes=0&amp;departureStation=&amp;arrivalStation=&amp;departureCity=159&amp;arrivalCity=109&amp;rideDate=01.08.2015&amp;backRideDate=30.07.2015&amp;currency=EUR">&rarr;</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="b col-xs-12 rides-list currency-eur">
+                                            <div class="sr-head row">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="visible-xs visible-md col-xs-12 col-md-12">AB/AN,
+                                                            DAUER, Umsteigen
+                                                        </div>
+                                                        <div class="col-sm-5 hidden-xs hidden-md ride-timing">AB/AN,
+                                                            DAUER
+                                                        </div>
+                                                        <div class="col-sm-3 hidden-xs hidden-md transfer">Umsteigen
+                                                        </div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md price">Preise</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total">
+                                                            GESAMTPREIS
+                                                        </div>
+                                                        <div class="hidden-xs hidden-md col-sm-8 col-lg-7 action"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout-->
+                                            <div class="sr-row row ride_12827808 booked" style="display:none"
+                                                 data-ride-data="{&quot;id&quot;:12827808,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-5 col-sm-6 col-md-5 col-lg-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">06:00</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">08:35</span></div>
+                                                                    <div class="duration"><span>2</span> Std.
+                                                                        <span>35</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 total">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="12827808"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sr-row row ride_12827808 unbooked"
+                                                 data-ride-data="{&quot;id&quot;:12827808,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">06:00</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">08:35</span></div>
+                                                                    <div class="duration"><span>2</span> Std.
+                                                                        <span>35</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div><img src="/img/man.png" alt="">1
+                                                                ×6,00 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total"><span
+                                                                class="num">6,00</span> €
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-7 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="12827808"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout ends--><!--new layout-->
+                                            <div class="sr-row row ride_14716728 booked" style="display:none"
+                                                 data-ride-data="{&quot;id&quot;:14716728,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-5 col-sm-6 col-md-5 col-lg-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">06:10</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">08:20</span></div>
+                                                                    <div class="duration"><span>2</span> Std.
+                                                                        <span>10</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div class="in-cart"><span class="num">11,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 total">
+                                                            <div class="in-cart"><span class="num">11,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="14716728"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sr-row row ride_14716728 unbooked"
+                                                 data-ride-data="{&quot;id&quot;:14716728,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">06:10</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">08:20</span></div>
+                                                                    <div class="duration"><span>2</span> Std.
+                                                                        <span>10</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div><img src="/img/man.png" alt="">1
+                                                                ×11,00 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total"><span
+                                                                class="num">11,00</span> €
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-7 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="14716728"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout ends--><!--new layout-->
+                                            <div class="sr-row row ride_13143838 booked" style="display:none"
+                                                 data-ride-data="{&quot;id&quot;:13143838,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-5 col-sm-6 col-md-5 col-lg-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">08:40</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">10:20</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>40</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 total">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="13143838"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sr-row row ride_13143838 unbooked"
+                                                 data-ride-data="{&quot;id&quot;:13143838,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">08:40</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">10:20</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>40</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div><img src="/img/man.png" alt="">1
+                                                                ×6,00 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total"><span
+                                                                class="num">6,00</span> €
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-7 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="13143838"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout ends--><!--new layout-->
+                                            <div class="sr-row row ride_14355888 booked" style="display:none"
+                                                 data-ride-data="{&quot;id&quot;:14355888,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-5 col-sm-6 col-md-5 col-lg-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">09:40</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">11:25</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>45</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 total">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="14355888"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sr-row row ride_14355888 unbooked"
+                                                 data-ride-data="{&quot;id&quot;:14355888,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">09:40</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">11:25</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>45</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div><img src="/img/man.png" alt="">1
+                                                                ×6,00 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total"><span
+                                                                class="num">6,00</span> €
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-7 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="14355888"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout ends--><!--new layout-->
+                                            <div class="sr-row row ride_13144668 booked" style="display:none"
+                                                 data-ride-data="{&quot;id&quot;:13144668,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-5 col-sm-6 col-md-5 col-lg-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">14:20</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">16:00</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>40</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 total">
+                                                            <div class="in-cart"><span class="num">6,00</span> €</div>
+                                                            <div class="in-cart-places">
+                                                                Gebucht:
+                                                                <div class="persons-count-block"><img src="/img/man.png"
+                                                                                                      alt=""><span
+                                                                        class="persons-count">1</span></div>
+                                                                <div class="bikes-count-block" style="display: none">
+                                                                    <img src="/img/bike.png" alt=""><span
+                                                                        class="bikes-count">0</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="13144668"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sr-row row ride_13144668 unbooked"
+                                                 data-ride-data="{&quot;id&quot;:13144668,&quot;persons&quot;:1,&quot;status&quot;:&quot;available&quot;}"
+                                                 data-btn-tmp="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                 data-departure-date="2015-07-30">
+                                                <div class="col-xs-6 time-transfer">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5 ride-timing">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">
+                                                                    <div class="dept-arr"><span
+                                                                            class="departure">14:20</span><span
+                                                                            class="divider">&ndash;</span><span
+                                                                            class="arrival">16:00</span></div>
+                                                                    <div class="duration"><span>1</span> Std.
+                                                                        <span>40</span> Min.
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 visible-sm visible-lg operator"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 transfer">
+                                                            <div class="transf-num">
+                                                                Direkt
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 visible-xs visible-md operator"></div>
+                                                        <div class="col-sm-4 hidden-xs hidden-md col-lg-4 price">
+                                                            <div><img src="/img/man.png" alt="">1
+                                                                ×6,00 €
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 price-actions">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-4 col-md-12 col-lg-5 total"><span
+                                                                class="num">6,00</span> €
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-8 col-md-12 col-lg-7 action">
+                                                            <form method="POST" action="/cart/process/add"><input
+                                                                    type="hidden" name="trip" value="13144668"><input
+                                                                    type="hidden" name="type" value="direct"><input
+                                                                    type="hidden" name="from" value="79"><input
+                                                                    type="hidden" name="to" value="26"><input
+                                                                    type="hidden" name="adult" value="1"><input
+                                                                    type="hidden" name="children" value="0"><input
+                                                                    type="hidden" name="bikes" value="0"><input
+                                                                    type="submit" class="reserve" value="Platz buchen"
+                                                                    data-values="{&quot;remove&quot;:&quot;Platz entfernen&quot;,&quot;add&quot;:&quot;Platz buchen&quot;,&quot;switch&quot;:&quot;Platz wechseln&quot;}"
+                                                                    data-actions="{&quot;add&quot;:&quot;\/cart\/process\/add&quot;,&quot;switch&quot;:&quot;\/cart\/process\/add&quot;,&quot;remove&quot;:&quot;\/cart\/process\/remove&quot;}"
+                                                                    data-action="/cart/process/add"><br/></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--new layout ends--></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="pill-error" class="b col-xs-12 rides-list pill-block"
+                                     data-group="direct" style="display: none">
+                                    <div class="srch-result">
+                                        <div class="srch-result">
+                                            <div class="nothing"><img src="/img/sadbus.png" alt=""/>
+
+                                                <div class="last-date-message"><strong>Wir haben leider keine passenden
+                                                    Fahrten gefunden.</strong></div>
+                                                <div class="srch-error-subscribe">
+                                                    <div class="ses-hd">Wir informieren Sie gerne über unsere neuen
+                                                        Angebote:
+                                                    </div>
+                                                    <div class="ses-fu-blocks">
+                                                        <div class="ses-fu-block">
+                                                            Liken auf Facebook
+                                                            <div class="fu-widget"><a class="fb-like"
+                                                                                      href="https://www.facebook.com/FlixBus"
+                                                                                      data-send="true"
+                                                                                      data-layout="button_count"
+                                                                                      data-width="110"
+                                                                                      data-show-faces="false"
+                                                                                      target="_blank"><img
+                                                                    src="/img/facebook.png"></a></div>
+                                                        </div>
+                                                        <div class="ses-fu-block">
+                                                            Folgen in Twitter
+                                                            <div class="fu-widget"><a href="https://twitter.com/FlixBus"
+                                                                                      class="twitter-follow-button"
+                                                                                      data-show-count="false"
+                                                                                      data-lang="de"
+                                                                                      target="_blank"><img
+                                                                    src="/img/twitter.png"></a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup" id="day-trip-price-popup"><span class="popup-top">
+                Tagesfahrt: Rückfahrt am selben Tag
+            </span><span class="popup-bot"></span></div>
+                    <div class="popup" id="group-price-popup"><span class="popup-top">
+                Gruppenpreis: Ab 3 Leuten auf derselben Fahrt
+            </span><span class="popup-bot"></span></div>
+                    <script type="text/javascript">
+                        var dataLayer = dataLayer || [];
+
+                        dataLayer.push({
+                            'event': 'productImpressions',
+                            'origin': 'Tübingen',
+                            'destination': 'Karlsruhe',
+                            'results': '5',
+                            'returnSearch': 'oneway',
+                            'returnResults': 'none',
+                            'ecommerce': {
+                                'currencyCode': 'EUR',
+                                'impressions': [{
+                                    "id": 12827808,
+                                    "name": "T\u00fcbingen Hbf - Karlsruhe Hbf",
+                                    "price": 6,
+                                    "reduced": "no",
+                                    "origin": "T\u00fcbingen Hbf",
+                                    "destination": "Karlsruhe Hbf",
+                                    "departureDate": "20150730_thursday_06-00",
+                                    "travelParty": "1,0,0",
+                                    "duration": 155,
+                                    "leadtime": 6,
+                                    "connectionType": "direct",
+                                    "returnType": "oneway",
+                                    "utilization": "0"
+                                }, {
+                                    "id": 14716728,
+                                    "name": "T\u00fcbingen Hbf - Karlsruhe Hbf",
+                                    "price": 11,
+                                    "reduced": "no",
+                                    "origin": "T\u00fcbingen Hbf",
+                                    "destination": "Karlsruhe Hbf",
+                                    "departureDate": "20150730_thursday_06-10",
+                                    "travelParty": "1,0,0",
+                                    "duration": 130,
+                                    "leadtime": 6,
+                                    "connectionType": "direct",
+                                    "returnType": "oneway",
+                                    "utilization": "0"
+                                }, {
+                                    "id": 13143838,
+                                    "name": "T\u00fcbingen Hbf - Karlsruhe Hbf",
+                                    "price": 6,
+                                    "reduced": "no",
+                                    "origin": "T\u00fcbingen Hbf",
+                                    "destination": "Karlsruhe Hbf",
+                                    "departureDate": "20150730_thursday_08-40",
+                                    "travelParty": "1,0,0",
+                                    "duration": 100,
+                                    "leadtime": 8,
+                                    "connectionType": "direct",
+                                    "returnType": "oneway",
+                                    "utilization": "0"
+                                }, {
+                                    "id": 14355888,
+                                    "name": "T\u00fcbingen Hbf - Karlsruhe Hbf",
+                                    "price": 6,
+                                    "reduced": "no",
+                                    "origin": "T\u00fcbingen Hbf",
+                                    "destination": "Karlsruhe Hbf",
+                                    "departureDate": "20150730_thursday_09-40",
+                                    "travelParty": "1,0,0",
+                                    "duration": 105,
+                                    "leadtime": 9,
+                                    "connectionType": "direct",
+                                    "returnType": "oneway",
+                                    "utilization": "0"
+                                }, {
+                                    "id": 13144668,
+                                    "name": "T\u00fcbingen Hbf - Karlsruhe Hbf",
+                                    "price": 6,
+                                    "reduced": "no",
+                                    "origin": "T\u00fcbingen Hbf",
+                                    "destination": "Karlsruhe Hbf",
+                                    "departureDate": "20150730_thursday_14-20",
+                                    "travelParty": "1,0,0",
+                                    "duration": 100,
+                                    "leadtime": 14,
+                                    "connectionType": "direct",
+                                    "returnType": "oneway",
+                                    "utilization": "0"
+                                }]
+                            }
+                        })
+                        ;
+                    </script>
+                </div>
+                <div class="side col-xs-12 col-md-4">
+                    <script type="text/javascript"
+                            src="/js/f29cbc9.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+                    <!--BEGIN .cart -->
+                    <div class="col-xs-12 cart collapsed b currency-eur" data-user="false">
+                        <div class="row cart-content-wrapper">
+                            <div class="col-xs-12 empty">
+                                <div class="row first header">
+                                    <div class="col-xs-7 col-md-6 vcenter"><span
+                                            class="cart-collapse-btn cart-collapse-control glyphicon glyphicon-menu-down"></span>
+
+                                        <h2>Warenkorb</h2></div>
+                                    <!--
+                -->
+                                    <div class="col-xs-5 col-md-6 vcenter"><span class="currency-switch"><span
+                                            class="active de">EUR</span><span>|</span><a
+                                            href="https://shop.flixbus.de/switch/currency/chf?redirect=/search%3Fadults%3D1%26children%3D0%26bikes%3D0%26departureStation%3D%26arrivalStation%3D%26departureCity%3D159%26arrivalCity%3D109%26rideDate%3D30.07.2015%26oneWay%3D%26backRideDate%3D30.07.2015%26_locale%3Dde%26form_build_id%3Dform-QnIcn8UswpxIH93qVDSRbfQEorKbYZnX7Qqh1tYYrQo%26form_id%3Dfb_search_form_main%26_ga%3D1.212170269.861310141.1432776698"
+                                            class="ch" data-currency="CHF">CHF</a></span></div>
+                                </div>
+                                <div class="row empty-item">
+                                    <div class="col-xs-12 cart-empty-notice"><span class=" active">
+                        Suchen Sie nach verfügbaren Fahrten und legen Sie diese in den Warenkorb, um sie zu buchen.
+                    </span></div>
+                                </div>
+                                <div class="row promocode-wrapper">
+                                    <div class="col-xs-12"></div>
+                                </div>
+                                <div class="row last">
+                                    <div class="col-xs-1 hidden-md hidden-lg cart-collapse-control cart-btn vcenter">
+                                        <span class="cart-collapse-btn glyphicon glyphicon-menu-up"></span></div>
+                                    <!--
+                    -->
+                                    <div class="col-xs-5 cart-collapse-control total vcenter"><span class="light-gray">Ihr Warenkorb ist leer</span>
+                                    </div>
+                                    <!--
+                    -->
+                                    <div class="reservation col-xs-6 col-md-12 vcenter"></div>
+                                    <!--
+                    -->
+                                    <div class="col-xs-6 col-md-12 button-wrapper vcenter"><a href="/passengers"
+                                                                                              id="book-button"
+                                                                                              class="main-button btn btn-big btn-green btn-disabled">
+                                        <div class="button-text">
+                                            <div class="title">Buchen</div>
+                                        </div>
+                                    </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-overlay cart-collapse-control"></div>
+                    <!--END .cart -->
+                    <script type="text/javascript">
+                        var captchaWidget = new CaptchaWidget("6Lde6gMTAAAAAD8kv8tmvvctuRhk0bxzKbE2soMZ");
+                    </script>
+                    <div class="cart-expired-popup b text"><img src="/img/sadbus.png" alt=""/>
+
+                        <h3>Ihre Sitzung ist abgelaufen! Wir mussten Ihren Warenkorb leider stornieren</h3>
+
+                        <p>Wir können die Fahrten in Ihrem Warenkorb nur für 30 Minuten reservieren, bevor sie wieder
+                            für alle Kunden verfügbar werden.</p>
+
+                        <p>Falls Sie Ihre Zahlungsdaten bereits eingegeben haben, wird die Zahlung nicht abgebucht oder
+                            ggf. zurückgebucht.</p>
+
+                        <p>Bitte führen Sie Ihre Verbindungssuche und Buchung erneut aus, um Ihre Fahrt zu buchen.
+                            Vielen Dank.</p><a class="submit btn btn-small" href="/search">Fahrt erneut suchen</a></div>
+                    <div class="empty-phone-popup b text"><h3>Bitte geben sie für dringende Sonderfälle eine
+                        Rückrufnummer (vorzugsweise eine Mobilfunknummer) des Kunden an.</h3>
+
+                        <p>Diese wird ausschließlich zur Kommunikation in Bezug auf die Fahrt des Kunden genutzt.</p>
+
+                        <p>Der Kunde erhält so Verspätungsmeldungen per SMS und kann bei unvorhersehbaren Ereignissen
+                            schnell informiert werden.</p><a class="submit btn btn-small btn-return" href="#">Zurück zum
+                            Formular</a><a class="submit btn btn-small btn-continue btn-orange" href="#">Weiter ohne
+                            Telefonnummer</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="overlay"></div>
+</div>
+<!-- // FOOTER -->
+<footer class="footer container">
+    <div class="panel-pane pane-block pane-fb-base-social-media">
+        <div class="pane-content">
+            <div class="col-md-6 col-md-offset-3">
+                <ul class="smBox">
+                    <li>FLIXBUS BEI:</li>
+                    <li><a href="https://de-de.facebook.com/FlixBus" class="smIcons bg1" target="_blank"></a></li>
+                    <li><a href="https://twitter.com/FlixBus" class="smIcons bg2" target="_blank"></a></li>
+                    <li><a href="https://plus.google.com/114561312723359392850/posts" class="smIcons bg3"
+                           target="_blank"></a></li>
+                    <li><a href="http://www.youtube.com/user/EinfachBusfahren?feature=watch" class="smIcons bg4"
+                           target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-separator"></div>
+    <div class="panel-pane pane-block pane-menu-footer-menu">
+        <div class="pane-content">
+            <ul class="menuFooter col-md-12">
+                <li class="col-sm-3 col-md-2 first">
+                    <button class="nolink"><h4>Reisemöglichkeiten</h4></button>
+                    <ul>
+                        <li><a href="https://www.flixbus.de/fernbus">Fernbus</a></li>
+                        <li><a href="https://www.flixbus.de/busreisen">Busreisen</a></li>
+                        <li><a href="https://www.flixbus.de/busfahrplan-bushaltestelle">Fahrpläne & Haltestellen</a>
+                        </li>
+                        <li><a href="https://www.flixbus.de/busfahrt">Busfahrt</a></li>
+                        <li><a href="https://www.flixbus.de/linienbus">Linienbus</a></li>
+                        <li><a href="https://www.flixbus.de/nachtbus">Nachtbusse</a></li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 col-md-2">
+                    <button class="nolink"><h4>Fernbus-Ziele</h4></button>
+                    <ul>
+                        <li><a href="https://www.flixbus.de/fernbus/berlin">Fernbus Berlin</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/hamburg">Fernbus Hamburg</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/muenchen">Fernbus München</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/koeln">Fernbus Köln</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/dresden">Fernbus Dresden</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/frankfurt">Fernbus Frankfurt</a></li>
+                        <li><a href="https://www.flixbus.de/fernbus/duesseldorf">Fernbus Düsseldorf</a></li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 col-md-2">
+                    <button class="nolink"><h4>Busverbindungen</h4></button>
+                    <ul>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-frankfurt-berlin">Bus Frankfurt -
+                            Berlin</a></li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-berlin-muenchen">Bus München -
+                            Berlin</a></li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-berlin-koeln">Bus Köln - Berlin</a>
+                        </li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-berlin-hamburg">Bus Hamburg -
+                            Berlin</a></li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-wien-muenchen">Bus München - Wien</a>
+                        </li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-prag-berlin">Bus Berlin - Prag</a>
+                        </li>
+                        <li><a href="https://www.flixbus.de/busverbindung/fernbus-dresden-berlin">Bus Dresden -
+                            Berlin</a></li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 col-md-2">
+                    <button class="nolink"><h4>FlixBus</h4></button>
+                    <ul>
+                        <li><a href="https://www.flixbus.de/unternehmen/ueber-flixbus">Über FlixBus</a></li>
+                        <li><a href="https://www.flixbus.de/unternehmen/jobs">Karriere</a></li>
+                        <li><a href="https://www.flixbus.de/unternehmen/presse">Presse</a></li>
+                        <li><a href="https://www.flixbus.de/datenschutz">Datenschutz</a></li>
+                        <li><a href="https://www.flixbus.de/agb-abb">AGB & ABB</a></li>
+                        <li><a href="https://www.flixbus.de/impressum">Impressum</a></li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 col-md-2">
+                    <button class="nolink"><h4>Kundenservice</h4></button>
+                    <ul>
+                        <li><a href="https://www.flixbus.de/service/faq">FAQ</a></li>
+                        <li><a href="https://www.flixbus.de/service/newsletter">Newsletter</a></li>
+                        <li><a href="https://www.flixbus.de/gutscheine">Gutscheine</a></li>
+                        <li><a href="https://www.flixbus.de/service/fernbus-app">Fernbus App</a></li>
+                        <li><a href="https://www.flixbus.de/fahrgastrechte">Fahrgastrechte</a></li>
+                        <li><a href="https://www.flixbus.de/service/stornieren-und-umbuchen">Stornieren & Umbuchen</a>
+                        </li>
+                        <li><a href="https://www.flixbus.de/unternehmen/kontakt">Kontakt</a></li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 col-md-2 last">
+                    <button class="nolink"><h4>Sicher zahlen mit</h4></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-separator"></div>
+    <div class="panel-pane pane-block pane-fb-base-copyright">
+        <div class="pane-content">
+            <div class="col-md-4 col-md-offset-4 col-sm-12 copyRight">
+                © 2015 FlixBus GmbH
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- // END FOOTER --><!-- Latest compiled and minified JavaScript -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/flixbus.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+<script type="text/javascript" src="/js/21f9c07.js?d576f59e99764cc43ea4435a0de1b2dfe6e54973"></script>
+<script type="text/javascript">window.NREUM || (NREUM = {});
+NREUM.info = {
+    "beacon": "bam.nr-data.net",
+    "licenseKey": "6882bdc767",
+    "applicationID": "12519370",
+    "transactionName": "YwEGZEpYWURXVhANXVpLJVNMUFhZGUYBBUBXDDtWV0ta",
+    "queueTime": 0,
+    "applicationTime": 421,
+    "atts": "T0YFEgJCSko=",
+    "errorBeacon": "bam.nr-data.net",
+    "agent": "js-agent.newrelic.com\/nr-632.min.js"
+}</script>
+</body>
+</html>
